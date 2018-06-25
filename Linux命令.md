@@ -1,9 +1,9 @@
-### 常用的一些Linux(CentOS)命令，方便以后查阅
+### 常用的一些Linux(CentOS7)命令，方便以后查阅
 #####1. 查看是否有iptables规则
 ```shell
 iptables -L
 ```
-#####2. 关闭iptable规则
+#####2. 关闭iptables规则
 ```shell
 iptables -F
 ```
@@ -27,14 +27,14 @@ setenforce 0
 ```shell
 yum -y upgrade
 ```
-#####8. Linux(CentOS)重启命令
+#####8. 重启命令
 ```shell
 1. reboot
 2. shutdown -r now 立刻重启(root用户使用)
 3. shutdown -r 10 过10分钟自动重启(root用户使用)
 4. shutdown -r 20:35 在时间为20:35时候重启(root用户使用)
 ```
-#####9. Linux(CentOS)关机命令
+#####9. 关机命令
 ```shell
 1. halt 立刻关机
 2. poweroff 立刻关机
@@ -45,19 +45,19 @@ yum -y upgrade
 ```shell
 yum list installed
 ```
-#####11. Linux查看开放端口
+#####11. 查看开放端口
 ```shell
 firewall-cmd --zone=public --list-ports
 ```
-#####12. Linux开放一个端口
+#####12. 开放一个端口
 ```shell
 firewall-cmd --zone=public --add-port=80/tcp --permanent （--permanent永久生效，没有此参数重启后失效）
 ```
-#####13. Linux关闭一个端口
+#####13. 关闭一个端口
 ```shell
 firewall-cmd --zone=public --remove-port=80/tcp --permanent
 ```
-#####14. Linux在开启或关闭一个端口之后需重新载入
+#####14. 开启或关闭一个端口之后需重新载入
 ```shell
 firewall-cmd --reload
 ```
