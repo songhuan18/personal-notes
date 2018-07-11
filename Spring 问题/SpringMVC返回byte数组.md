@@ -20,9 +20,8 @@ private <T> Object processBody(Object body, MethodParameter returnType, MediaTyp
   return body;
 }
 
-converterType的类型必须为：org.springframework.http.converter.json.MappingJackson2HttpMessageConverter，否则if判断为false，无法执行beforeBodyWrite，因而也就无法执行方法beforeBodyWriteInternal(),如果SpringMVC最终返回值是byte数组，那么converType的类型为：org.springframework.http.converter.ByteArrayHttpMessageConverter，最终导致if判断为false，所以最后终无法调用到beforeBodyWriteInternal()方法
-
 ```
+converterType的类型必须为：org.springframework.http.converter.json.MappingJackson2HttpMessageConverter，否则if判断为false，无法执行beforeBodyWrite，因而也就无法执行方法beforeBodyWriteInternal(),如果SpringMVC最终返回值是byte数组，那么converType的类型为：org.springframework.http.converter.ByteArrayHttpMessageConverter，最终导致if判断为false，所以最后终无法调用到beforeBodyWriteInternal()方法
 - 解决办法
 
 将返回的byte数组，封装在一个对象里面返回，然后就可以正常调用ByteArrayHttpMessageConverter，最终导致if判断为false，所以最后终无法调用到方法beforeBodyWriteInternal()方法了。
