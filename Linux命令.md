@@ -66,3 +66,9 @@ firewall-cmd --reload
 ps -ef
 ps -aux
 ```
+#####16. 快速清空文件内容
+```shell
+echo "" > test.txt（文件大小被截为1字节）
+> test.txt（文件大小被截为0字节）
+cat /dev/null > test.txt（文件大小被截为0字节）
+```
