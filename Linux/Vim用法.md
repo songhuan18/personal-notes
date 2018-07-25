@@ -59,7 +59,7 @@ vim分为三种模式：一般模式、编辑模式、命令行模式
 #### 块选择
 1. 使用vim hosts打开该文件
 2. 将光标移动到第一行的host那个h头上，然后按下ctrl + v，左下角会出现块示意图，如下图所示：
-![image](../img/Linux块选择示意图1.jpg)
+![image](http://pceh5403k.bkt.clouddn.com/Linux%E5%9D%97%E9%80%89%E6%8B%A9%E7%A4%BA%E6%84%8F%E5%9B%BE1.jpg)
 3. 将光标移动到底部(第29行)，此时光标移动过的区域会反白，如下图所示：
 ![image](http://pceh5403k.bkt.clouddn.com/Linux%E5%9D%97%E9%80%89%E6%8B%A9%E7%A4%BA%E6%84%8F%E5%9B%BE2.jpg)
 4. 此时你可以按下"y"来进行复制，当你按下y之后，反白的块就会消失
