@@ -32,6 +32,7 @@ git rm -r --cached  文件
 ```
 最后执行
 ```shell
+git pull origin master
 git push origin master
 ```
 #### 3. 解决在SmartGit上无法Pull项目
