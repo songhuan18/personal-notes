@@ -7,7 +7,9 @@
 ```shell
 nginx -t -c /etc/nginx/nginx.conf
 ```
-####3. nginx修改配置文件重启
+####3. nginx重启
 ```shell
 nginx -s reload -c /etc/nginx/nginx.conf
+#或
+/usr/nginx/sbin/nginx -s reload
 ```

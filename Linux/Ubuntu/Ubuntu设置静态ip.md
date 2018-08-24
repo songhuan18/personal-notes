@@ -39,7 +39,7 @@ lo        Link encap:本地环回
 - 修改配置文件
 
 ```shell
-sudo vim /etc/network/interfaces
+sudo vim /etc/network/interfaces.d/enp0s5
 
 auto enp0s5 #使用之前查询的网卡设备名
 iface enp0s5 inet static #enp0s5这个接口使用静态ip
@@ -52,5 +52,7 @@ dns-nameservers 192.168.10.1 223.5.5.5 #dns服务地址
 - 刷新ip
 
 ```
-systemctl restart network
+systemctl restart network #network.service 需存在
+或者
+sudo /etc/init.d/networking restart
 ```
