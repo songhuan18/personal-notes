@@ -25,3 +25,10 @@ netstat [选项]
 - -n 不使用域名与服务名，而使用IP地址和端口号
 - -l 仅列出在监听状态的网络服务
 - -a 列出所有的网络连接
+
+#### 重启防火墙
+```shell
+firewall-cmd --reload #重启firewall
+systemctl stop firewalld.service #停止firewall
+systemctl disable firewalld.service #禁止firewall开机启动
+```
