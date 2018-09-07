@@ -21,7 +21,7 @@ RUN tar zxvf /opt/kafka/kafka*.tgz -C /opt/kafka &&\
 
 RUN echo "source /root/.bash_profile" > /opt/kafka/start.sh &&\
 	echo "cd /opt/kafka/kafka_2.9.1-"$KAFKA_VERSION >> /opt/kafka/start.sh &&\
-	echo "sed -i 's%zookeeper.connect=.*$%zookeeper.connect=zookeeper:2181%g'  /opt/kafka/kafka_2.11-"$KAFKA_VERSION"/config/server.properties" >> /opt/kafka/start.sh &&\
+	echo "sed -i 's%zookeeper.connect=.*$%zookeeper.connect=zookeeper:2181%g'  /opt/kafka/kafka_2.9.1-"$KAFKA_VERSION"/config/server.properties" >> /opt/kafka/start.sh &&\
 	echo "bin/kafka-server-start.sh config/server.properties" >> /opt/kafka/start.sh &&\
 	chmod a+x /opt/kafka/start.sh
 

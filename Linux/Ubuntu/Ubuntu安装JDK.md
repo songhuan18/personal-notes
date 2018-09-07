@@ -17,7 +17,7 @@ sudo tar -zxvf jdk-8u181-linux-x64.tar.gz
 
 ##### 配置环境变量
 ```shell
-sudo vim /etc/environment
+sudo vim /etc/profile
 ```
 在文件底部输入以下信息，并保存
 ```shell
@@ -32,7 +32,7 @@ export CLASSPATH
 ```
 ##### 重新加载配置文件
 ```shell
-sudo source /etc/environment
+sudo source /etc/profile
 ```
 ##### 查看jdk版本
 ```shell
