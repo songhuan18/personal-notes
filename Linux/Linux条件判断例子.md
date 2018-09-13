@@ -53,3 +53,40 @@ for((i=1;i<=100;i=i+1))
   done
 echo "The sum is $s"
 ```
+###### 批量添加指定数量的用户
+```shell
+#!/bin/bash
+read -t 30 -p "please input username: " username
+read -t 30 -p "please input the number of users: " number
+read -t 30 -p "please input password of users: " password
+if [ ! -z $username -a ! -z $number -a ! -z $password ]
+  then
+      y=$(echo $number | sed 's/[0-9]//g') #判断number是否全为数字
+      if [ -z $y ]
+        then
+          for ((i=1;i<=$number;i=i+1))
+            do
+              /usr/sbin/useradd $username$i &>/dev/null
+              echo $password | /usr/bin/passwd --stdin $name$i &>/dev/null
+            done
+      fi
+fi
+```
+##### 批量删除指定用户
+```shell
+#!/bin/bash
+read -t 30 -p "please input username: " username
+read -t 30 -p "please input the number of users: " number
+read -t 30 -p "please input password of users: " password
+if [ ! -z $username -a ! -z $number -a ! -z $password ]
+  then
+      y=$(echo $number | sed 's/[0-9]//g') #判断number是否全为数字
+      if [ -z $y ]
+        then
+          for ((i=1;i<=$number;i=i+1))
+            do
+              /usr/sbin/userdel $username$i &>/dev/null
+            done
+      fi
+fi
+```

@@ -99,3 +99,17 @@ for 变量 in 值1 值2 值3
     程序
   done
 ```
+##### while循环
+```shell
+while [ 条件判断式 ] #条件判断式成立循环
+  do
+    程序
+  done
+```
+##### until循环
+```shell
+until [ 条件判断式 ] #条件判断式不成立循环
+  do
+    程序
+  done
+```
