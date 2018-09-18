@@ -52,7 +52,7 @@ dns-nameservers 192.168.10.1 223.5.5.5 #dns服务地址
 - 刷新ip
 
 ```
-systemctl restart network #network.service 需存在
+systemctl restart networking.service #networking.service 需存在
 或者
 sudo /etc/init.d/networking restart
 ```
