@@ -67,7 +67,7 @@ docker run -d --name sh_zookeeper -h zookeeper -p 2181:2181 sh/zookeeper:3.4.6
 docker run -d --name sh_kafka -h kafka -p 9092:9092 --link sh_zookeeper sh/kafka:0.8.2.2
 #注意：--link sh_zookeeper 将kafka 链接到 zookeeper
 ```
-> 注意：kafka启动后通过kafka tools 工具无法连接到kafka，只能连接到zookeeper。
+> 注意：kafka启动后通过kafka tools 工具无法连接到kafka，只能连接到zookeeper，无法访问kafka
 
 解决办法：
 修改配置文件 server.properties

@@ -490,7 +490,7 @@ tracker_server=192.168.10.1:22122
 ## 在192.168.10.3storage服务器上删除数据文件
 rm -rf /fastdfs/storage/data
 ## 重启节点
-/usr/bin/fdfs_storaged /etc/fdfs/storage.conf
+/usr/bin/fdfs_storaged /etc/fdfs/storage.conf restart
 ```
 
 - 测试图片无法访问
