@@ -55,6 +55,10 @@ docker rmi 某个镜像的名字 #删除单个镜像
 docker rmi 某个镜像的名字 某个镜像的名字 ... #删除多个镜像
 docker rmi $(docker images -qa) #删除全部镜像
 ```
+##### 删除镜像名和TAG为none的镜像
+```shell
+docker rmi -f $(docker images -f "dangling=true" -q)
+```
 > 在docker中有镜像才能创建容器，这是根本前提
 
 ##### 新建并启动容器(启动交互式容器)
@@ -159,5 +163,21 @@ docker attach containerID
 
 #### 从容器内拷贝文件到主机上
 ```shell
-docker cp 容器ID:容器内的路劲 目的主机路径
+docker cp 容器ID:容器内的文件路径 目的主机路径
+```
+#### 从主机拷贝文件到容器
+```shell
+docker cp 主机文件路径 容器ID:容器内文件路径
+```
+#### 查看数据卷挂载
+```sh
+docker volume ls
+```
+#### 查看数据卷挂载详情
+```sh
+docker volume inspect VOLUM_NAME
+```
+#### docker删除为none的镜像
+```sh
+docker rmi -f $(docker images -f "dangling=true" -q)
 ```
