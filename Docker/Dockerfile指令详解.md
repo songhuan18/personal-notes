@@ -3,7 +3,7 @@
 - MAINTAINER：镜像维护者的姓名和邮箱地址
 - RUN：容器构建时需要运行的命令
 - EXPOSE：当前容器对外暴露的端口
-- WORKDIR：指定在创建容器后，终端默认登陆进来的工作目录，一个落脚点
+- WORKDIR：指定在创建容器后，终端默认登陆进来的工作目录，一个落脚点，类似于cd命令。写在该指令后的RUN,CMD以及ENTRYPOINT指令都将该目录作为当前目录，并执行相应的命令。
 - ENV：用来构建镜像过程中设置环境变量
 - ADD：将宿主机目录下的文件拷贝进镜像，且ADD命令会自动处理URL和解压tar压缩包
 - COPY：类似ADD，拷贝文件和目录到镜像中，将从构建上下文目录<源路径>的文件/目录复制到新的一层的镜像内的<目标路径>位置：COPY src dest 或 COPY["src", "dest"]
@@ -19,3 +19,13 @@
   - 执行一个容器启动时要运行的命令
   - ENTRYPOINT的目的和CMD一样，都是在指定容器启动程序及参数
 - ONBUILD：当构建一个被继承的Dockerfile时运行的命令，父镜像在被子继承后父镜像的onbuild被触发
+
+##### ARG命令
+ARG一次可以定义一个或多个变量
+FROM busybox
+ARG user
+......
+可以使用如下命令构建：
+```sh
+docker build --build-arg user=xxxx Dockerfile .
+```

@@ -181,3 +181,26 @@ docker volume inspect VOLUM_NAME
 ```sh
 docker rmi -f $(docker images -f "dangling=true" -q)
 ```
+#### 保存镜像
+```sh
+docker save [OPTIONS] IMAGE [IMAGE...]
+参数说明：
+--output, -o Write to a file, instead of STDOUT
+例子：
+docker save busybox > busybox.tar
+docker save --output busybox.tar busybox
+```
+#### 加载镜像
+```sh
+docker load [OPTIONS]
+参数说明：
+--input, -i 从文件加载而非STDIN
+--quiet, -q 静默加载（默认为false）
+例子：
+docker load < busybox.tar.gz
+docker load --input fedora.tar
+```
+#### 创建桥接网络
+```sh
+docker network create --driver bridge isolated_nw
+```
