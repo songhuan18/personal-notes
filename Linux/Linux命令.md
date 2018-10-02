@@ -32,3 +32,22 @@ firewall-cmd --reload #重启firewall
 systemctl stop firewalld.service #停止firewall
 systemctl disable firewalld.service #禁止firewall开机启动
 ```
+#### Linux查看文件大小
+```sh
+stat 文件名
+du -b 文件名 -b表示以字节计数
+du -h 文件名 直接得出文件大小,单位：M
+```
+#### sed行定位使用
+```sh
+#只打印第二行，不打印其他的行
+sed -n '2'p file
+#打印从第一行到第四行的记录
+sed -n '1,4'p file
+#打印匹配logs的行
+sed -n 'logs'p file
+#打印从第四行匹配logs之间的所有行
+sed -n '4,/logs/'p file
+#把第一行和第二行全部删除
+sed '1,2'd file
+```
