@@ -1,0 +1,47 @@
+FROM ubuntu:16.04
+
+LABEL maintainer="yg fastdfs docker maintainer <112597649@qq.com>"
+
+WORKDIR /usr/local/src
+
+# 准备环境
+RUN apt-get update \
+    && apt-get -y install wget git gcc g++ make automake autoconf libtool \
+    && apt-get -y install libpcre3 libpcre3-dev \
+    && apt-get -y install openssl libssl-dev \
+    && apt-get -y install zlib1g zlib1g.dev
+
+# 安装libfastcommon类库
+RUN git clone https://github.com/happyfish100/libfastcommon.git --depth 1 \
+    && cd libfastcommon/ \
+    && ./make.sh \
+    && ./make.sh install
+
+# 安装FastDFS tracker
+# 创建跟踪服务器数据目录
+RUN mkdir -p /fastdfs/tracker
+
+# 安装tracker
+RUN git clone https://github.com/happyfish100/fastdfs.git --depth 1 \
+    && cd fastdfs/ \
+    && ./make.sh \
+    && ./make.sh install
+
+# 配置tracker.conf文件
+# ADD tracker.conf /etc/fdfs/
+
+# 在tracker上安装nginx
+RUN wget http://nginx.org/download/nginx-1.12.2.tar.gz \
+    && tar -zxvf nginx-1.12.2.tar.gz \
+    && cd nginx-1.12.2/ \
+    && ./configure --prefix=/usr/local/nginx \
+    && make \
+    && make install
+# 配置配置nginx.conf
+# ADD nginx.conf /usr/local/nginx/conf/
+
+EXPOSE 22122 8888
+
+ENTRYPOINT /usr/bin/fdfs_trackerd /etc/fdfs/tracker.conf;\
+           /usr/local/nginx/sbin/nginx;\
+           /bin/bash
