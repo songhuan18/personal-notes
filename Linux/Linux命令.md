@@ -51,3 +51,7 @@ sed -n '4,/logs/'p file
 #把第一行和第二行全部删除
 sed '1,2'd file
 ```
+#### CentOS 安装telnet命令
+```sh
+yum -y install telnet telnet-server
+```

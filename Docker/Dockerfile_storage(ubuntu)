@@ -17,32 +17,41 @@ RUN git clone https://github.com/happyfish100/libfastcommon.git --depth 1 \
     && ./make.sh \
     && ./make.sh install
 
-# 安装FastDFS tracker
-# 创建跟踪服务器数据目录
-RUN mkdir -p /fastdfs/tracker
+# 安装FastDFS storage
+# 创建存储服务器数据目录
+RUN mkdir -p /fastdfs/storage
 
-# 安装tracker
+# 安装storage
 RUN git clone https://github.com/happyfish100/fastdfs.git --depth 1 \
     && cd fastdfs/ \
     && ./make.sh \
     && ./make.sh install \
-    && cp /etc/fdfs/tracker.conf.sample /etc/fdfs/tracker.conf
+    && cp /etc/fdfs/storage.conf.sample /etc/fdfs/storage.conf
+# 配置sotrage
+# ADD storage.conf /etc/fdfs/storage.conf
 
-# 配置tracker.conf文件
-# ADD tracker.conf /etc/fdfs/
+# 安装fastdfs-nginx-module
+RUN git clone https://github.com/happyfish100/fastdfs-nginx-module.git --depth 1 \
+    && cp /usr/local/src/fastdfs-nginx-module/src/mod_fastdfs.conf /etc/fdfs
 
-# 在tracker上安装nginx
+# 安装nginx
 RUN wget http://nginx.org/download/nginx-1.12.2.tar.gz \
     && tar -zxvf nginx-1.12.2.tar.gz \
     && cd nginx-1.12.2/ \
-    && ./configure --prefix=/usr/local/nginx \
+    && ./configure --add-module=/usr/local/src/fastdfs-nginx-module/src/ \
     && make \
     && make install
-# 配置配置nginx.conf
-# ADD nginx.conf /usr/local/nginx/conf/
 
-EXPOSE 22122 8888
+# 配置fastdfs-nginx-module
+# ADD mod_fastdfs.conf /etc/fdfs/mod_fastdfs.conf
 
-ENTRYPOINT /usr/bin/fdfs_trackerd /etc/fdfs/tracker.conf;\
+# 配置nginx.config
+# ADD nginx.conf /usr/local/nginx/conf/nginx.conf
+
+RUN cp /usr/local/src/fastdfs/conf/http.conf /usr/local/src/fastdfs/conf/mime.types /etc/fdfs
+
+EXPOSE 23000 8888
+
+ENTRYPOINT /usr/bin/fdfs_storaged /etc/fdfs/storage.conf;\
            /usr/local/nginx/sbin/nginx;\
            /bin/bash
