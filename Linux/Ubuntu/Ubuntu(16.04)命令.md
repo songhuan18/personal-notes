@@ -7,5 +7,13 @@ Linux version 4.4.0-87-generic (buildd@lcy01-31) (gcc version 5.4.0 20160609 (Ub
 ```
 ##### ubuntu安装ping
 ```sh
-apt-get -y install iputils-ping
+sudo apt-get -y install iputils-ping
+```
+##### ubuntu安装brctl
+```sh
+sudo apt-get -y install bridge-utils
+```
+##### ubuntu安装netstat
+```sh
+sudo apt-get -y install net-tools
 ```
