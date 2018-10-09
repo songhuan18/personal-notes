@@ -470,6 +470,8 @@ ubuntu@ubuntu-1604-220:~$ fdfs_upload_file /etc/fdfs/client.conf /home/ubuntu/te
 group2/M00/00/00/wKgK4FtNuRyAI6FZAAAADBGgifM210.txt
 ```
 
+参考：http://www.ityouknow.com/fastdfs/2017/10/10/cluster-building-fastdfs.html
+
 #### 集群搭建遇到的一些问题（CentOS7 上遇到的一些问题）
 
 - ip_addr 状态不对

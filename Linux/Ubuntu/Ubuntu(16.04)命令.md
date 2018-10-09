@@ -17,3 +17,7 @@ sudo apt-get -y install bridge-utils
 ```sh
 sudo apt-get -y install net-tools
 ```
+##### ubuntu安装telnet
+```sh
+apt-get update && apt-get -y install telnet
+```
