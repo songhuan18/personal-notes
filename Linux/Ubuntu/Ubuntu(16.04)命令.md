@@ -21,3 +21,16 @@ sudo apt-get -y install net-tools
 ```sh
 apt-get update && apt-get -y install telnet
 ```
+##### ubuntu创建新用户
+```sh
+# 切换为root用户，获取创建用户权限
+sudo su
+# 添加一个新用户
+useradd songhuan
+# 为该用户设置登录密码
+passwd songhuan
+# 为该用户指定命令解释程序
+usermod -s /bin/bash songhuan
+# 查看用户属性
+cat /etc/passed
+```
