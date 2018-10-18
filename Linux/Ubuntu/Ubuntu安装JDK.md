@@ -21,14 +21,11 @@ sudo vim /etc/profile
 ```
 在文件底部输入以下信息，并保存
 ```shell
-JAVA_HOME=/home/songhuan/java/jdk/jdk1.8.0_181
+JAVA_HOME=/opt/jdk/jdk1.8.0_181
 JRE_HOME=$JAVA_HOME/jre
 PATH=$PATH:$JAVA_HOME/bin
 CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
-export JAVA_HOME
-export JRE_HOME
-export PATH
-export CLASSPATH
+export JAVA_HOME JRE_HOME PATH CLASSPATH
 ```
 ##### 重新加载配置文件
 ```shell
