@@ -26,11 +26,24 @@ apt-get update && apt-get -y install telnet
 # 切换为root用户，获取创建用户权限
 sudo su
 # 添加一个新用户
-useradd songhuan
+useradd -m songhuan
 # 为该用户设置登录密码
 passwd songhuan
 # 为该用户指定命令解释程序
 usermod -s /bin/bash songhuan
 # 查看用户属性
 cat /etc/passed
+```
+##### 使用w命令查看登录用户正在使用的进程信息
+
+##### 添加 ubunut 国内镜像源
+```sh
+# 备份
+sudo cp /etc/apt/sources.list /etc/apt/sources.list_backup
+# 修改
+sudo sed -i "s/us.archive.ubuntu.com/mirrors.aliyun.com/g" /etc/apt/sources.list
+```
+##### ssh远程连接
+```sh
+sudo apt-get -y install openssh-server
 ```

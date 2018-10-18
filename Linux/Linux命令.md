@@ -55,3 +55,19 @@ sed '1,2'd file
 ```sh
 yum -y install telnet telnet-server
 ```
+#### basename基本语法
+```sh
+# 功能描述：basename命令会删除掉以'/'结尾之前的字符，保留'/'之后的字符
+songhuan@ubuntu-1604-7  ~  basename /home/songhuan/java/code/service_registry/start.sh
+start.sh
+songhuan@ubuntu-1604-7  ~  basename /home/songhuan/java/code/service_registry/start.sh .sh
+start
+```
+#### dirname基本语法
+```sh
+# dirname 文件绝对路径
+# 功能描述：从给定的包含绝对路径的文件名中取出文件名，然后返回剩下的路径
+songhuan@ubuntu-1604-7  ~  dirname /home/songhuan/java/code/service_registry/start.sh
+/home/songhuan/java/code/service_registry
+
+```
