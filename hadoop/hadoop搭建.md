@@ -1,3 +1,7 @@
+##### 大数据概念
+大数据是指无法在一定时间内用常规软件工具对其内容进行抓取、管理和处理的数据集合。大数据技术，是指从各种各样类型的数据中，快速获得有价值信息的能力。适用于大数据的技术，包括大规模并行处理（MPP）数据库，数据挖掘电网，分布式文件系统，分布式数据库，云计算平台，互联网，和可扩展的存储系统。
+##### hadoop生态
+![image](http://192.168.10.221:8888/group2/M00/00/08/wKgK4FvO3O6AXCrdAADmdObGVhI725.jpg)
 ##### 环境准备
 - 系统环境：Ubuntu16.04 x86_64
 - 内核
@@ -94,6 +98,13 @@ export JAVA_HOME=/opt/setups/jdk1.8.0_181 # 更改之后
 ```
 ### 搭建HDFS伪分布式
 
+##### 配置ip映射
+```sh
+sudo vim /etc/hosts
+192.168.10.237  hadoop237
+```
+> 注意：访问hadoop的机器也需要配置ip映射
+
 ##### 配置core-site.xml
 ```sh
 vim etc/hadoop/core-site.xml
@@ -101,7 +112,7 @@ vim etc/hadoop/core-site.xml
     <!-- 指定HDFS中NameNode的地址 -->
     <property>
         <name>fs.defaultFS</name>
-        <value>hdfs://192.168.10.237:9000</value>
+        <value>hdfs://hadoop237:9000</value>
     </property>
     <!-- 指定Hadoop运行时产生文件的存储目录 -->
     <property>
@@ -119,6 +130,10 @@ vim etc/hadoop/hdfs-site.xml
         <name>dfs.replication</name>
         <value>1</value>
     </property>
+    <property>
+        <name>dfs.datanode.http.address</name>
+        <value>hadoop237:50075</value>
+    </property>
 <configuration>
 ```
 ##### 格式化NameNode
@@ -128,6 +143,9 @@ bin/hdfs namenode -format
 ##### 启动NameNode和DataNode后台运行
 ```sh
 sbin/start-dfs.sh
+# 或者使用以下命令
+sbin/hadoop-daemon.sh start datanode
+sbin/hadoop-daemon.sh start namenode
 ```
 ##### web端查看HDFS文件系统
 ```
@@ -176,4 +194,134 @@ cat /home/ubuntu/hadoop/setups/hadoop-data/data/tmp/dfs/name/current/VERSION
 ```sh
 sbin/stop-dfs.sh
 ```
+
 ### 搭建YARN
+##### 配置yarn-env.sh
+```sh
+vim etc/hadoop/yarn-env.sh
+export JAVA_HOME=/opt/setups/jdk1.8.0_181
+```
+##### 配置yarn-site.xml
+```sh
+vim etc/hadoop/yarn-site.xml
+<configuration>
+    <!-- Reducer获取数据的方式 -->
+    <property>
+        <name>yarn.nodemanager.aux-services</name>
+        <value>mapreduce_shuffle</value>
+    </property>
+   <!-- 指定YARN的ResourceManager的地址 -->
+   <property>
+	<name>yarn.resourcemanager.hostname</name>
+	<value>hadoop237</value>
+   </property>
+</configuration>
+```
+##### 配置mapred-env.sh
+```sh
+vim etc/hadoop/mapred-env.#!/bin/sh
+export JAVA_HOME=/opt/setups/jdk1.8.0_181
+```
+##### 配置mapred-site.xml
+```sh
+cp etc/hadoop/mapred-site.xml.template etc/hadoop/mapred-site.xml
+vim etc/hadoop/mapred-site.xml
+<configuration>
+    <!-- 指定MR运行在YARN上 -->
+    <property>
+        <name>mapreduce.framework.name</name>
+        <value>yarn</value>
+    </property>
+</configuration>
+```
+##### 启动集群
+```sh
+sbin/start-yarn.sh
+# 或者使用如下命令
+sbin/yarn-daemon.sh start resourcemanager
+sbin/yarn-daemon.sh start nodemanager
+```
+可以通过：192.168.10.237：8088 查看网页
+> 可以通过jps查看
+
+##### 操作集群
+- 执行MapReduce程序
+```sh
+hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.2.jar wordcount /user/ubuntu/input /user/ubuntu/output
+```
+- 查看运行结果
+```sh
+hadoop fs -cat /user/ubuntu/output/*
+```
+
+##### 设置免密启动
+```sh
+ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
+cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+chmod 0600 ~/.ssh/authorized_keys
+```
+#####  配置历史服务器
+为了查看程序的历史运行情况，需要配置一下历史服务器
+```sh
+vim etc/hadoop/mapred-site.xml
+# 增加以下配置
+<!-- 历史服务器端地址 -->
+<property>
+    <name>mapreduce.jobhistory.address</name>
+    <value>hadoop237:10020</value>
+</property>
+<!-- 历史服务器web端地址 -->
+<property>
+    <name>mapreduce.jobhistory.webapp.address</name>
+    <value>hadoop237:19888</value>
+</property>
+```
+- 启动历史服务器
+```sh
+sbin/mr-jobhistory-daemon.sh start historyserver
+```
+
+##### 配置日志的聚集
+日志聚集概念：应用运行完成以后，将程序运行日志信息上传到HDFS系统上。<br>
+日志聚集功能好处：可以方便的查看到程序运行详情，方便开发调试。
+> 注意：开启日志聚集功能，需要重新启动NodeManager 、ResourceManager和JobHistoryServer。
+
+- 配置yarn-site.xml
+```sh
+vim etc/hadoop/yarn-site.xml
+# 增加以配置
+<!-- 日志聚集功能使能 -->
+<property>
+    <name>yarn.log-aggregation-enable</name>
+    <value>true</value>
+</property>
+<!-- 日志保留时间设置7天 -->
+<property>
+    <name>yarn.log-aggregation.retain-seconds</name>
+      <value>604800</value>
+</property>
+```
+- 关闭NodeManager、ResourceManager、JobHistoryServer
+```sh
+sbin/mr-jobhistory-daemon.sh stop historyserver
+sbin/yarn-daemon.sh stop resourcemanager
+sbin/yarn-daemon.sh stop nodemanager
+```
+- 启动NodeManager、ResourceManager、JobHistoryServer
+```sh
+sbin/mr-jobhistory-daemon.sh start historyserver
+sbin/yarn-daemon.sh start resourcemanager
+sbin/yarn-daemon.sh start nodemanager
+```
+- 删除HDFS上已经存在的输出文件
+```sh
+bin/hdfs dfs -rm -R /user/ubuntu/output
+```
+- 执行WordCount程序
+```sh
+hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.2.jar wordcount /user/ubuntu/input /user/ubuntu/output
+```
+- 查看日志
+```
+http://hadoop237:19888/jobhistory/logs
+```

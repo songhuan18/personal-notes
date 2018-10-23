@@ -33,6 +33,12 @@ passwd songhuan
 usermod -s /bin/bash songhuan
 # 查看用户属性
 cat /etc/passed
+# 给用户增加sudo权限
+chmod u+w /etc/sudoers
+vim /etc/sudoers
+# 增加以下命令
+songhuan        ALL=(ALL:ALL) ALL
+chmod u-w /etc/sudoers
 ```
 ##### 使用w命令查看登录用户正在使用的进程信息
 
