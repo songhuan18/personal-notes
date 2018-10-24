@@ -117,7 +117,7 @@ vim etc/hadoop/core-site.xml
     <!-- 指定Hadoop运行时产生文件的存储目录 -->
     <property>
         <name>hadoop.tmp.dir</name>
-        <value>/home/ubuntu/hadoop/setups/hadoop-data/hadoop-2.7.2/data/tmp</value>
+        <value>/home/ubuntu/hadoop/setups/hadoop-data/data/tmp</value>
     </property>
 </configuration>
 ```
@@ -130,11 +130,7 @@ vim etc/hadoop/hdfs-site.xml
         <name>dfs.replication</name>
         <value>1</value>
     </property>
-    <property>
-        <name>dfs.datanode.http.address</name>
-        <value>hadoop237:50075</value>
-    </property>
-<configuration>
+</configuration>
 ```
 ##### 格式化NameNode
 ```sh
@@ -149,7 +145,7 @@ sbin/hadoop-daemon.sh start namenode
 ```
 ##### web端查看HDFS文件系统
 ```
-http://192.168.10.237:50070
+http://hadoop237:50070
 ```
 > 如果web页面不能查看，请看[以下帖子](http://www.cnblogs.com/zlslch/p/6604189.html)
 
@@ -184,7 +180,7 @@ bin/hdfs dfs -get /user/ubuntu/output/* output/
 ```
 - 删除输出结果
 ```sh
-bin/hdfs dfs -rmr /user/ubuntu/output
+bin/hdfs dfs -rm -r /user/ubuntu/output
 ```
 - 查看集群ID
 ```sh
@@ -219,7 +215,7 @@ vim etc/hadoop/yarn-site.xml
 ```
 ##### 配置mapred-env.sh
 ```sh
-vim etc/hadoop/mapred-env.#!/bin/sh
+vim etc/hadoop/mapred-env.sh
 export JAVA_HOME=/opt/setups/jdk1.8.0_181
 ```
 ##### 配置mapred-site.xml
@@ -235,13 +231,15 @@ vim etc/hadoop/mapred-site.xml
 </configuration>
 ```
 ##### 启动集群
+> 启动前必须保证NameNode和DataNode已经启动
+
 ```sh
 sbin/start-yarn.sh
 # 或者使用如下命令
 sbin/yarn-daemon.sh start resourcemanager
 sbin/yarn-daemon.sh start nodemanager
 ```
-可以通过：192.168.10.237：8088 查看网页
+可以通过：hadoop237:8088 查看网页
 > 可以通过jps查看
 
 ##### 操作集群
