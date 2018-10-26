@@ -53,3 +53,10 @@ sudo sed -i "s/us.archive.ubuntu.com/mirrors.aliyun.com/g" /etc/apt/sources.list
 ```sh
 sudo apt-get -y install openssh-server
 ```
+##### 通过私钥生成公钥
+
+ssh-keygen -y -f [private-key-path] > [output-path]
+
+```sh
+ssh-keygen -y -f id_rsa > id_rsa.pub
+```
