@@ -10,3 +10,7 @@ cd cmake-3.3.2
 make
 make install
 ```
+#### 卸载cmake
+```sh
+make uninstall
+```
