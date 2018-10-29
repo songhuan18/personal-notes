@@ -67,7 +67,7 @@ xsync bin
 ### 集群配置
 ##### 集群部署规划
 
-  | hadoop11 | hadoop13 | hadoop14
+无 | hadoop11 | hadoop13 | hadoop14
 --- | --- | --- | ---
 HDFS | NameNode<br>DataNode | DataNode | SecondaryNameNode<br>DataNode
 YARN | NodeManager | ResourceManager<br>NodeManager | NodeManager
