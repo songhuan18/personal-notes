@@ -351,3 +351,32 @@ set mapred.reduce.tasks=100;
 set mapred.reduce.tasks;
 ```
 上述三种设定方式的优先级依次递增。即配置文件<命令行参数<参数声明。注意某些系统级的参数，例如log4j相关的设定，必须用前两种方式设定，因为那些参数的读取在会话建立以前已经完成了。
+
+### HiveJDBC访问
+##### 启动hiveserver2
+- 新开一个窗口启动hiveserver2服务
+```sh
+$HIVE_HOME/bin/hiveserver2
+```
+- 再开一个窗口启动beeline
+```sh
+$HIVE_HOME/bin/beeline
+```
+- 连接hiveserver2
+```sh
+beeline> !connect jdbc:hive2://hadoop11:10000
+Connecting to jdbc:hive2://hadoop11:10000
+Enter username for jdbc:hive2://hadoop11:10000: songhuan
+Enter password for jdbc:hive2://hadoop11:10000:
+Connected to: Apache Hive (version 1.2.1)
+Driver: Hive JDBC (version 1.2.1)
+Transaction isolation: TRANSACTION_REPEATABLE_READ
+0: jdbc:hive2://hadoop11:10000> show databases;
++----------------+--+
+| database_name  |
++----------------+--+
+| default        |
++----------------+--+
+1 row selected (1.389 seconds)
+0: jdbc:hive2://hadoop11:10000>
+```
