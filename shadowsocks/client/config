@@ -1,0 +1,13 @@
+logSyslog = true
+logFile = /var/log/polipo.log
+logLevel = 99
+proxyAddress = "0.0.0.0"
+proxyPort = 8123
+daemonise = true
+socksParentProxy = "127.0.0.1:1080"
+socksProxyType = socks5
+chunkHighMark = 50331648
+objectHighMark = 16384
+serverMaxSlots = 64
+serverSlots = 16
+serverSlots1 = 32

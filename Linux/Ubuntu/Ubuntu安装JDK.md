@@ -5,7 +5,8 @@ https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.
 ```
 通过命令下载
 ```
-wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u181-b13/96a7b8442fe848ef90c96a2fad6ed6d1/jdk-8u181-linux-x64.tar.gz
+wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie"
+http://download.oracle.com/otn/java/jdk/8u181-b13/96a7b8442fe848ef90c96a2fad6ed6d1/jdk-8u181-linux-x64.tar.gz
 ```
 > 注意：在oracle官网下载jdk必须“Accept License Agreement”，所以在下载jdk时需添加命令：--no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie"。如果不添加该命令，那么下载下来的包无法解压
 
