@@ -23,7 +23,7 @@ sudo tar -zxvf redis-3.0.4.tar.gz -C ../setups/
 ```sh
 # 准备
 sudo apt-get update
-sudo apt-get gcc g++ make cmake
+sudo apt-get -y install gcc g++ make cmake
 # 开始安装
 cd redis-3.0.4/
 sudo make && make install
