@@ -37,7 +37,7 @@ vim myid
 ```
 拷贝配置好的zookeeper到其他机器上
 ```sh
-xsync myid
+xsync zkData
 ```
 ##### 配置zoo.cfg
 重命名~/hadpoop/setups/zookeeper-3.4.10/conf这个目录下的zoo_sample.cfg为zoo.cfg
