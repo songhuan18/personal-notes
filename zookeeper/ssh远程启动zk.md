@@ -13,7 +13,7 @@ Codename:	xenial
 
 - 远程启动zk命令
 ```sh
-ssh ubuntu124 "/root/space/zookeeper/zookeeper-3.4.5/bin/zkServer.sh start"
+ssh ubuntu124 "/home/songhuan/hadoop/setups/zookeeper-3.4.10/zkServer.sh start"
 ```
 
 ##### 问题追踪
@@ -33,7 +33,7 @@ nohup $JAVA "-Dzookeeper.log.dir=${ZOO_LOG_DIR}" "-Dzookeeper.root.logger=${ZOO_
 
 在启动zk之前先source /etc/profile
 ```sh
-ssh ubuntu124 "source /etc/profile;/root/space/zookeeper/zookeeper-3.4.5/bin/zkServer.sh start"
+ssh ubuntu124 "source /etc/profile;/home/songhuan/hadoop/setups/zookeeper-3.4.10/bin/zkServer.sh start"
 ```
 ##### 思考
 1. 如果Java环境变量配置在用户家目录.bashrc中(环境变量配置在代码末尾)，source .bashrc 后启动zk无效<br>

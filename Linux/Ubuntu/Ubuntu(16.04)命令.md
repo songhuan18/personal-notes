@@ -60,3 +60,7 @@ ssh-keygen -y -f [private-key-path] > [output-path]
 ```sh
 ssh-keygen -y -f id_rsa > id_rsa.pub
 ```
+##### 查看时区
+```sh
+cat /etc/timezone
+```
