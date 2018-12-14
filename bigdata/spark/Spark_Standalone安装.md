@@ -177,7 +177,7 @@ sbin/start-history-server.sh
 ```
 > 通过 http://hadoop237:4000/ 即可访问 History Server
 
-##### 使用Spark shell执行一个单词统计
+##### 使用Spark shell执行一个WordCount
 ```sh
 sc.textFile("./LICENSE").flatMap(_.split(" ")).map((_,1)).reduceByKey(_+_).collect
 ```

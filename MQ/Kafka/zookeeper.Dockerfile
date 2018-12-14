@@ -1,17 +1,15 @@
 FROM centos:6.6
 
-RUN yum -y install vim lsof wget tar bzip2 unzip vim-enhanced passwd sudo yum-utils hostname net-tools rsync man git make automake cmake patch logrotate python-devel libpng-devel libjpeg-devel pwgen python-pip
+RUN yum -y install vim lsof wget tar bzip2 unzip vim-enhanced passwd sudo yum-utils hostname net-tools rsync man git make automake cmake patch logrotate python-devel libpng-devel libjpeg-devel pwgen python-pip\
+    && mkdir -p /opt/java
+ADD jdk-8u181-linux-x64.tar.gz /opt/java
 
-RUN mkdir /opt/java &&\
-	wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u181-b13/96a7b8442fe848ef90c96a2fad6ed6d1/jdk-8u181-linux-x64.tar.gz -P /opt/java
-
-RUN tar zxvf /opt/java/jdk-8u181-linux-x64.tar.gz -C /opt/java &&\
-	JAVA_HOME=/opt/java/jdk1.8.0_181 &&\
+RUN  JAVA_HOME=/opt/java/jdk1.8.0_181 &&\
 	sed -i "/^PATH/i export JAVA_HOME=$JAVA_HOME" /root/.bash_profile &&\
 	sed -i "s%^PATH.*$%&:$JAVA_HOME/bin%g" /root/.bash_profile &&\
 	source /root/.bash_profile
 
-ENV ZOOKEEPER_VERSION "3.4.6"
+ENV ZOOKEEPER_VERSION "3.4.13"
 
 RUN mkdir /opt/zookeeper &&\
 	wget https://archive.apache.org/dist/zookeeper/zookeeper-$ZOOKEEPER_VERSION/zookeeper-$ZOOKEEPER_VERSION.tar.gz -P /opt/zookeeper
