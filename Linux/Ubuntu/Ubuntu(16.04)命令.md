@@ -64,3 +64,25 @@ ssh-keygen -y -f id_rsa > id_rsa.pub
 ```sh
 cat /etc/timezone
 ```
+##### 查看apt-get安装依赖版本信息
+```sh
+apt-cache madison nginx
+```
+##### 安装htpasswd命令
+```sh
+sudo apt-get -y install apache2-utils
+```
+##### 使用htpassed生成密码文件
+```sh
+sudo htpasswd -c htpasswd songhuan
+```
+- 文件对应内容：
+```sh
+cat htpasswd
+# 输出为：songhuan:$apr1$c21FxkiO$nVhvUId2xQgR3co1KtENw0
+```
+> 可以同时创建多个username:passwd
+##### 统计CLOSE_WAIT的个数
+```sh
+netstat -n | awk '/^tcp/{++S[$NF]}END{for (a in S) print a,S[a]}'
+```
