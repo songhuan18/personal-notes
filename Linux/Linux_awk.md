@@ -1,15 +1,15 @@
-##### awk
+#### awk
 一个强大的文本分析工具，把文件逐行的读入，以空格为默认分隔符将每行切片，切开的部分再进行分析处理。
-##### 基本用法
+#### 基本用法
 awk [选项参数] ‘pattern1{action1}  pattern2{action2}...’ filename
 pattern：表示AWK在数据中查找的内容，就是匹配模式
 action：在找到匹配内容时所执行的一系列命令
-##### 选项参数说明
+#### 选项参数说明
 选项参数 | 功能
 --- | ---
 -F | 指定输入文件分隔符
 -v | 赋值一个用户定义变量
-##### 案例实操
+#### 案例实操
 - 数据准备
 ```sh
 cp /etc/passwd .
@@ -33,13 +33,13 @@ awk -F : 'BEGIN{print "user,shell"}{print $1","$7} END{print "xiaoming,/bin/xiao
 awk -v i=1 -F: '{print $3+i}' passwd
 ```
 
-##### awk的内置变量
+#### awk的内置变量
 变量 | 说明
 --- | ---
 FILENAME | 文件名
 NR | 已读的记录数
 NF | 浏览记录的域的个数
-##### 案例实操
+#### 案例实操
 - 统计passwd文件名，每行的行号，每行的列数
 ```sh
 awk -F: '{print "filename:" FILENAME ",linenumber:" NR ",columns:" NF}' passwd
