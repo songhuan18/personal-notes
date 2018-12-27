@@ -78,7 +78,7 @@ wo
 ⚡ root@songhuan  ~/shell  cat cut.txt | grep zhan | cut -d " " -f 1
 zhan
 ```
-##### 在cut.txt中获取第一行diyilie
+##### 在cut.txt中获取第一行第一列
 ```sh
 ⚡ root@songhuan  ~/shell  cut -d " " -f 1 cut.txt | sed -n "1p"
 zhan
