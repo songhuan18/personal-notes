@@ -30,7 +30,7 @@ li si
 wang wu
 zhao liu
 ```
-##### 将'mei nv'插入到sed.txt第二行
+##### 将'mei nv'插入到sed.txt第二行之后
 ```sh
 ⚡ root@songhuan  ~/shell  sed '2a mei nv' sed.txt
 zhang san
