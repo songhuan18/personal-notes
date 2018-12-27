@@ -22,7 +22,7 @@ awk -F : '/^root/{print $7}' passwd
 ```sh
 awk -F : '/^root/{print $1","$7}' passwd
 ```
-- 只显示/etc/passwd的第一列和第七列，以逗号分割，且在所有行前面添加列名user，shell在最后一行添加"dahaige，/bin/zuishuai"
+- 只显示/etc/passwd的第一列和第七列，以逗号分割，且在所有行前面添加列名user，shell在最后一行添加"xiaoming，/bin/xiaoming"
 ```sh
 awk -F : 'BEGIN{print "user,shell"}{print $1","$7} END{print "xiaoming,/bin/xiaoming"}' passwd
 ```
