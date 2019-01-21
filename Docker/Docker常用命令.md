@@ -177,7 +177,7 @@ docker volume ls
 ```sh
 docker volume inspect VOLUM_NAME
 ```
-#### docker删除为none的镜像
+#### docker删除所有悬空镜像，但不会删除未使用镜像
 ```sh
 docker rmi -f $(docker images -f "dangling=true" -q)
 ```

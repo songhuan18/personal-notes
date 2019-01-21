@@ -6,10 +6,7 @@
 - 系统环境：Ubuntu16.04 x86_64
 - 内核
 ```
-Distributor ID:	Ubuntu
-Description:	Ubuntu 16.04.3 LTS
-Release:	16.04
-Codename:	xenial
+Linux version 4.4.0-117-generic
 ```
 - jdk1.8.181
 - hadoop版本：hadoop-2.7.2

@@ -2,10 +2,7 @@
 - 系统环境：Ubuntu16.04 x86_64
 - 内核
 ```
-Distributor ID:	Ubuntu
-Description:	Ubuntu 16.04.3 LTS
-Release:	16.04
-Codename:	xenial
+Linux version 4.4.0-117-generic
 ```
 - jdk1.8.181
 - 三台虚拟机，ip分别为：192.168.10.237、192.168.10.211、192.168.10.236
@@ -69,7 +66,7 @@ bin/kafka-server-start.sh config/server.properties
 ##### 启动kafka(后台启动)
 ```sh
 cd $KAFKA_DIR
-bin/kafka-server-start.sh config/server.properties &
+bin/kafka-server-start.sh -daemon config/server.properties
 ```
 ##### 停止kafka
 ```sh

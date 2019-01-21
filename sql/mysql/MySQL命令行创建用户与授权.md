@@ -24,7 +24,7 @@ set password for 'username'@'=password'
 ##### 授权
 授予username管理newDB的所有权限（远程）
 ```
-grant all privileges on database.*@'%' to username@‘%’ identified by '1234';
+grant all privileges on database.*@'%' to username@'%' identified by '1234';
 ```
 授予username全部数据权限，并修改密码
 ```
