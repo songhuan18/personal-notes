@@ -21,10 +21,9 @@
 - ONBUILD：当构建一个被继承的Dockerfile时运行的命令，父镜像在被子继承后父镜像的onbuild被触发
 
 ##### ARG命令
-ARG一次可以定义一个或多个变量
-FROM busybox
-ARG user
-......
+ARG一次可以定义一个或多个变量<br>
+FROM busybox<br>
+ARG user<br>
 可以使用如下命令构建：
 ```sh
 docker build --build-arg user=xxxx Dockerfile .
