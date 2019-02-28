@@ -17,18 +17,16 @@ sudo tar -zxvf jdk-8u181-linux-x64.tar.gz
 
 ##### 配置环境变量
 ```shell
-sudo vim /etc/profile
+cd /etc/profile.d
+sudo vim java_env.sh
 ```
 在文件底部输入以下信息，并保存
 ```shell
-JAVA_HOME=/home/ubuntu/java/jdk/jdk1.8.0_181
-JRE_HOME=$JAVA_HOME/jre
+JAVA_HOME=/opt/setups/jdk1.8.0_181
 PATH=$PATH:$JAVA_HOME/bin
+JRE_HOME=$JAVA_HOME/jre
 CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
-export JAVA_HOME
-export JRE_HOME
-export PATH
-export CLASSPATH
+export JAVA_HOME PATH JRE_HOME CLASSPATH
 ```
 ##### 重新加载配置文件
 ```shell
