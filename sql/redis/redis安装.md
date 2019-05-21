@@ -32,6 +32,7 @@ sudo make && make install
 ```sh
 sudo vim redis.conf
 将daemonize no 改为：daemonize yes
+将bind 127.0.0.1 改为：bind 0.0.0.0
 ```
 ##### redis基本操作
 ```sh

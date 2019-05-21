@@ -28,3 +28,13 @@ ARG user<br>
 ```sh
 docker build --build-arg user=xxxx Dockerfile .
 ```
+
+#### mysql docker挂载时区
+```sh
+sudo docker run -d --name sh_mysql -p 3306:3306 --restart 'always' -e MYSQL_ROOT_PASSWORD=root -e TZ=Asia/Shanghai mysql:5.7.23
+```
+#### 测试容器
+测试完之后会删除容器
+```sh
+sudo docker run -it --rm -e TZ='Asia/Shanghai' mysql:5.7.23 date
+```

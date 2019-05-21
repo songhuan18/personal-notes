@@ -22,9 +22,16 @@ unlock tables;
 
 数据库的事物隔离越严格，并发副作用越小，但付出的代价越大，因为事物的隔离实质上就是使事物在一定程度上“串行化”进行，这显然与“并发”是矛盾的。不同的应用对读一致性和事物隔离程度的要求也是不同的，比如许多应用对“不可重复读”和”幻读”并不敏感，可能更关心数据并发访问的能力。
 
-#### 查看当前数据事物隔离级别
+#### 查看当前数据库事物隔离级别
 ```sh
 show variables like 'tx_isolation'
+```
+#### 设置事物隔离级别
+```sh
+# 设置当前会话隔离级别
+set session transaction isolation level read committed;
+# 设置全局隔离级别
+set global transaction isolation level read committed;
 ```
 #### 什么是间隙锁
 当我们用范围条件而不是相等条件检索数据，并请求共享或排他锁时，InnoDB会给符合条件的已有数据记录的索引项加锁，对于键值在条件范围内但并不存在的记录，叫做“间隙（GAP）”，InnoDB也会对这个“间隙”加锁，这种锁机制就是所谓的间隙锁（Next-Key锁）。
