@@ -11,3 +11,4 @@ gradlew.bat cleanIdea :spring-oxm:compileTestJava
 ```
 
 注意：`必须要预编译，不然随便checkout一个分支出来的话，会发现很多类找不到`
+  
