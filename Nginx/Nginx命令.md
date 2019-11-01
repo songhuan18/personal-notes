@@ -1,4 +1,6 @@
 ### Nginx使用命令
+> nginx安装目录是在/etc/nginx 
+
 #### nginx启动
 ```shell
 /usr/sbin/nginx

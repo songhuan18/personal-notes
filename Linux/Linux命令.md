@@ -71,3 +71,29 @@ songhuan@ubuntu-1604-7  ~  dirname /home/songhuan/java/code/service_regist
 /home/songhuan/java/code/service_registry
 
 ```
+
+
+1. ##### Mac上传文件到Linux
+```shel
+scp /dt/xxxx root@10.211.55.2:/pricture
+```
+2. ##### Linux查看开放端口
+```shell
+firewall-cmd --zone=public --list-ports
+```
+3. ##### Linux开放一个端口
+```shell
+firewall-cmd --zone=public --add-port=80/tcp --permanent （--permanent永久生效，没有此参数重启后失效）
+```
+4. ##### Linux关闭一个端口
+```shell
+firewall-cmd --zone= public --remove-port=80/tcp --permanent
+```
+5. ##### Linux在开启或关闭一个端口之后需重新载入
+```shell
+firewall-cmd --reload
+```
+6. ##### Linux查看内核版本
+```shell
+uname -a
+```

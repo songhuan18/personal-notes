@@ -204,3 +204,11 @@ docker load --input fedora.tar
 ```sh
 docker network create --driver bridge isolated_nw
 ```
+#### 创建docker组
+```sh
+sudo groupadd docker
+```
+#### 将用户加入docker组
+```sh
+sudo usermod -aG docker $USER
+```
