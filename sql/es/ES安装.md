@@ -56,3 +56,7 @@ vim jvm.options
 ```sh
 ./bin/elasticsearch -d
 ```
+##### 停止elasticsearch
+```sh
+kill -15 pid
+```

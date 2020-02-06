@@ -21,6 +21,7 @@ cd kibana-6.6.0-linux-x86_64/
 ```
 ##### 配置kibana
 ```sh
+vim kibana.yml
 #添加如下配置
 server.port: 5601
 server.host: "0.0.0.0"
