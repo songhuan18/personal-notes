@@ -1,6 +1,6 @@
 #### JVM参数
 参数名称 | 含义 | 默认值 | 示例 | 说明
---- | --- | --- | --- | --- | ---
+--- | --- | --- | --- | ---
 -Xms | 初始堆大小 | 物理内存的1/64(<1GB) ，Server端JVM最好将-Xms和-Xmx设为相同值，开发测试机JVM可以保留默认值 | -Xms1000M | 默认(MinHeapFreeRatio参数可以调整)空余堆内存小于40%时，JVM就会增大堆直到-Xmx的最大限制
 -Xmx | 最大堆大小 | 物理内存的1/4(<1GB)，最佳设值应该视物理内存大小及计算机内其他内存开销而定 | -Xms1000M | 默认(MaxHeapFreeRatio参数可以调整)空余堆内存大于70%时，JVM会减少堆直到 -Xms的最小限制
 -Xmn | 年轻代大小 | 不熟悉最好保留默认值 | 默认值 | 无
@@ -20,7 +20,7 @@
 
 #### 垃圾收集器相关参数
 参数名称 | 含义 | 默认值 | 示例 | 说明
---- | --- | --- | --- | --- | ---
+--- | --- | --- | --- | ---
 -XX:+UseParNewGC | 设置年轻代为并行收集 | - | + | 可与CMS收集同时使用，JDK5.0以上,JVM会根据系统配置自行设置,所以无需再设置此值
 -XX:ParallelGCThreads | 并行收集器的线程数 | 默认为CPU核心数 | 默认值 | 此值最好配置与处理器数目相等 同样适用于CMS
 -XX:+UseConcMarkSweepGC | 使用CMS内存收集 | - | + | 注意最新的JVM版本，当开启此选项时，-XX：UseParNewGC会自动开启。因此，如果年轻代的并行GC不想开启，可以通过设置-XX：-UseParNewGC来关掉。
@@ -28,13 +28,13 @@
 -XX:+UseCMSCompactAtFullCollection | 在FULL GC的时候， 对年老代 | - | + | CMS是不会移动内存的， 因此， 这个非常容易产生碎片， 导致内存不够用， 因此， 内存的压缩这个时候就会被启用。 增加这个参数是个好习惯。可能会影响性能,但是可以消除碎片
 -XX:CMSFullGCsBeforeCompaction | full gc多少次后进行内存压缩 | 默认为0 | 默认值 | 由于并发收集器不对内存空间进行压缩,整理,所以运行一段时间以后会产生”碎片”,使得运行效率降低.此值设置运行多少次GC以后对内存空间进行压缩,整理.
 -XX:CMSInitiatingOccupancyFraction | 老年代使用70％后开始CMS收集 | =92 | =75 | 为了保证不出现promotion failed(见下面介绍)错误,该值的设置需要满足以下公式
--XX:+UseCMSInitiatingOccupancyOnly | 只使用设定的回收阈值(- XX:CMSInitiatingOccupancyFraction设定的值)，如果不指定，JVM仅在第一次使用设定 值，后续则会自动调整 | | | 
+-XX:+UseCMSInitiatingOccupancyOnly | 只使用设定的回收阈值(- XX:CMSInitiatingOccupancyFraction设定的值)，如果不指定，JVM仅在第一次使用设定 值，后续则会自动调整 | | |
 -XX:+CMSClassUnloadingEnabled | 持久代使用CMS并发收集 | jdk1.7默认关闭,1.8默认打开 | - | 它会增加CMS remark的暂停时间，如果没有程序产生大量的临时类，新类加载并不频繁，这个参数还是不开的好
 -XX:CMSInitiatingPermOccupancyFraction | 设置Perm Gen使用到达多少比率时触发 | =92 | 默认值 | 无
 
 #### 日志相关参数
 参数名称 | 含义 | 默认值 | 示例 | 说明
---- | --- | --- | --- | --- | ---
+--- | --- | --- | --- | --- 
 -Xloggc | 记录日志文件位置 | 无 | /data/log/jetty/gc.log | 无
 -XX:+PrintGCDateStamps | 打印可读的日期而不是时间戳 | - | + | 无
 -XX:+PrintGCDetails | 打印日志详情 | - | + | 输出形式:[GC [DefNew: 8614K->781K(9088K), 0.0123035 secs] 118250K->113543K(130112K), 0.0124633 secs][GC [DefNew: 8614K->8614K(9088K), 0.0000665 secs][Tenured: 112761K->10414K(121024K), 0.0433488 secs] 121376K->10414K(130112K), 0.0436268 secs]
