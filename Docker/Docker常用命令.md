@@ -212,3 +212,7 @@ sudo groupadd docker
 ```sh
 sudo usermod -aG docker $USER
 ```
+#### 更新docker容器总是重新启动
+```sh
+docker update --restart=always 容器ID
+```
