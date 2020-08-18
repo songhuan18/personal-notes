@@ -16,3 +16,30 @@ show variables like '%storage_engine%';
 表空间 | 小 | 大
 关注点 | 性能 | 事物
 默认安装 | Y | Y
+
+##### mysql查看锁等待超时时间
+```
+show variables like 'innodb_lock_wait_timeout';
+```
+##### 设置当前session锁等待超时时间
+```
+set Innodb_lock_wait_timeout = 5;
+```
+##### 设置全局锁等待超时时间
+```
+set global innodb_lock_wait_timeout=50;
+```
+##### 查看当前会话是否自动提交事务
+```
+show variables like 'autocommit';
+```
+##### 设置当前会话为自动提交事务
+```
+set autocommit = 1
+```
+> 0：非自动提交事务，对应 OFF   1：自动提交事务，对应为 ON
+
+##### 查看是否主动监测死锁
+```
+show variables like 'innodb_deadlock_detect';
+```
