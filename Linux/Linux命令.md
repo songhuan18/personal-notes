@@ -97,3 +97,7 @@ firewall-cmd --reload
 ```shell
 uname -a
 ```
+##### 从远程主机拷贝文件
+```
+scp root@47.92.118.130:/home/xxx/jstack.txt /Users/xxx/xxx
+```
