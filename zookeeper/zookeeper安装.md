@@ -42,6 +42,7 @@ sudo mv zoo_sample.cfg zoo.cfg
 sudo vim zoo.cog
 # 修改内容如下
 dataDir=~/hadoop/setups/zookeeper-3.4.10/zkData
+dataLogDir=~/hadoop/setups/zookeeper-3.4.10/logs
 ```
 在~/hadoop/setups/zookeeper-3.4.10/这个目录上创建zkData文件夹
 ```sh

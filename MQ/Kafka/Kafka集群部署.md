@@ -66,7 +66,7 @@ bin/kafka-server-start.sh config/server.properties
 ##### 启动kafka(后台启动)
 ```sh
 cd $KAFKA_DIR
-bin/kafka-server-start.sh -daemon config/server.properties
+bin/kafka-server-start.sh -daemon config/server.properties &
 ```
 ##### 停止kafka
 ```sh

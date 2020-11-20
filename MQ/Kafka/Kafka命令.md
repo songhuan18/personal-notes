@@ -37,3 +37,11 @@ bin/kafka-topics.sh --zookeeper hadoop237:2181 --describe --topic first
 ```sh
 bin/kafka-topics.sh --zookeeper hadoop237:2181 --delete --topic first
 ```
+##### 查看所有的消费者组
+```sh
+bin/kafka-consumer-groups.sh --bootstrap-server localhost:9092 --list
+```
+##### 查看消费组状态信息
+```sh
+bin/kafka-consumer-groups.sh --bootstrap-server localhost:9092 --describe --group groupName --state
+```

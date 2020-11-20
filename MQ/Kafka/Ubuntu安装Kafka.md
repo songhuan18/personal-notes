@@ -72,7 +72,7 @@ docker run -d --name sh_kafka -h kafka -p 9092:9092 --link sh_zookeeper sh/kafka
 解决办法：
 修改配置文件 server.properties
 ```shell
-#listeners=PLAINTEXT://:9092
+listeners=PLAINTEXT://:9092
 advertised.listeners=PLAINTEXT://192.168.10.211:9092
 zookeeper.connect=localhost:2181
 ```

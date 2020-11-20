@@ -43,3 +43,37 @@ set autocommit = 1
 ```
 show variables like 'innodb_deadlock_detect';
 ```
+##### 查看binlog文件列表
+```
+show binary logs;
+```
+##### 查看指定binlog文件的内容
+```
+show binlog events in 'mysql-bin.000001';
+```
+##### mysqldump导出数据
+```
+mysqldump -h127.0.0.1 -P3306 -uroot -proot --add-locks=0 --no-create-info --single-transaction  --set-gtid-purged=OFF test t --where="id>0" --result-file=/t.sql
+```
+- –single-transaction 的作用是，在导出数据的时候不需要对表 test.t 加表锁，而是使用 START TRANSACTION WITH CONSISTENT SNAPSHOT 的方法；
+- –add-locks 设置为 0，表示在输出的文件结果里，不增加" LOCK TABLES t WRITE;" ；
+- –no-create-info 的意思是，不需要导出表结构；
+- –set-gtid-purged=off 表示的是，不输出跟 GTID 相关的信息；
+- –result-file 指定了输出文件的路径，其中 client 表示生成的文件是在客户端机器上的。
+
+##### 查看正在执行的事务
+```sh
+SELECT * from information_schema.INNODB_TRX;
+```
+##### 查看锁执行详情
+```sh
+show engine innodb status;
+```
+##### 查看最大连接数
+```
+show variables like '%max_connections%';
+```
+##### 设置最大连接数
+```
+set GLOBAL max_connections = 200;
+```

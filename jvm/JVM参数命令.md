@@ -10,3 +10,9 @@ jinfo -flag InitialHeapSize pid
 ```sh
 jinfo -flag MaxHeapSize pid
 ```
+#### 查看JVM设置的默认垃圾收集器
+```sh
+java -XX:+PrintCommandLineFlags -version
+# 或者
+java -XX:+PrintFlagsFinal -version | grep :
+```

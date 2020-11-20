@@ -13,5 +13,5 @@ services:
     ports:
      - 5601:5601
     environment:
-     - ELASTICSEARCH_HOSTS=10.211.55.6
+     - ELASTICSEARCH_HOSTS==http://10.211.55.6:9200
 ```

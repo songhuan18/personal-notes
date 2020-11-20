@@ -367,3 +367,7 @@ PRUNEPATHS = "......"
 ```sh
 nc -l 8080
 ```
+
+#### 查看文件或磁盘使用空间
+du -h --max-depth=1 /home 仅列出home目录下面所有的一级目录文件大小</br>
+du -h --max-depth=1 /home/* 列出home下面所有一级目录的一级目录文件大小
