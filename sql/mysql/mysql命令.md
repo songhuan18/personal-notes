@@ -73,7 +73,15 @@ show engine innodb status;
 ```
 show variables like '%max_connections%';
 ```
-##### 设置最大连接数
+##### 设置最大连接数(全局)
 ```
 set GLOBAL max_connections = 200;
+```
+##### 设置当前session最大连接数
+```
+set session max_connections = 200;
+```
+##### 查看binlog是否打开
+```
+show variables like '%log_bin%';
 ```

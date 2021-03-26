@@ -13,3 +13,12 @@ com.netflix.loadbalancer.ServerListUpdater.UpdateAction#doUpdate
 ```java
 com.alibaba.cloud.nacos.NacosConfigBootstrapConfiguration
 ```
+
+##### 心跳监测类
+```java
+com.alibaba.nacos.client.naming.beat.BeatReactor
+```
+##### 如何自己修改源码后打包nacos
+```
+mvn -Prelease-nacos -Dmaven.test.skip=true clean install -U
+```
