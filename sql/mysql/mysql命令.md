@@ -85,3 +85,13 @@ set session max_connections = 200;
 ```
 show variables like '%log_bin%';
 ```
+##### binlog刷盘时机
+对于InnoDB存储引擎而言，只有在事务提交时才会记录biglog，此时记录还在内存中，那么biglog是什么时候刷到磁盘中的呢？mysql通过sync_binlog参数控制biglog的刷盘时机，取值范围是0-N
+- 0：不去强制要求，由系统自行判断何时写入磁盘；
+- 1：每次commit的时候都要将binlog写入磁盘；
+- N：每N个事务，才会将binlog写入磁盘。
+
+```
+# 查看刷盘时机
+show variables like '%sync_binlog%';
+```
